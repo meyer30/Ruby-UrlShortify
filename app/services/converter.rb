@@ -1,20 +1,20 @@
-# class converter
+class Converter
     
-#   def toBase62(id)
-#     s = '012345689abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-#     hash_str = ''
-#     while id > 0 do
-#       hash_str = s[id % 62] + hash_str
-#       id /= 62
-#     end
-#     hash_str
-#   end
-#     def toBase10(base64Num)
-#       alphabet = '012345689abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-#       result = 0
-#       base = 62
-#       base64Num.each_char { |curChar| result = result * base + alphabet.index(curChar) }
-#       result
-#     end
-# end
+    CharSet = '012345689abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    Base = CharSet.length
+
+    def self.encode(id)
+        hash_str = ''
+        while id > 0 do
+            hash_str = CharSet[id % Base] + hash_str
+            id /= Base
+        end
+        hash_str
+    end
+    def self.decode(encodedNum)
+        result = 0
+        encodedNum.each_char { |curChar| result = result * Base + CharSet.index(curChar) }
+        result
+    end
+end
   
